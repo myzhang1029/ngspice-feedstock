@@ -1,5 +1,5 @@
 {% set name = "ngspice-suite" %}
-{% set version = "44.2" %}
+{% set version = "34" %}
 
 package:
   name: {{ name|lower }}
@@ -7,8 +7,8 @@ package:
 
 source:
 
-  url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/{{ version }}/ngspice-{{ version }}.tar.gz
-  sha256: e7dadfb7bd5474fd22409c1e5a67acdec19f77e597df68e17c5549bc1390d7fd
+  url: https://sourceforge.net/projects/ngspice/files/ng-spice-rework/old-releases/{{ version }}/ngspice-{{ version }}.tar.gz
+  sha256: 2263fffc6694754972af7072ef01cfe62ac790800dad651bc290bfcae79bd7b5
 
   patches:
     - patches/libtoolize-name.patch            # [osx]
@@ -42,7 +42,6 @@ outputs:
         - make
         - libtool
         - texinfo
-        - readline
         - bison
         - flex
 
@@ -50,13 +49,11 @@ outputs:
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
         - ncurses
-        - readline
 
       run:
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
         - ncurses
-        - readline
 
     test:
       commands:
@@ -76,7 +73,6 @@ outputs:
         - make
         - libtool
         - texinfo
-        - readline
         - bison
         - flex
 
@@ -84,7 +80,6 @@ outputs:
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
         - ncurses
-        - readline
         - xorg-libx11
         - xorg-libxaw
         - xorg-libxt
@@ -93,7 +88,6 @@ outputs:
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
         - ncurses
-        - readline
         - xorg-libx11
         - xorg-libxaw
         - xorg-libxt

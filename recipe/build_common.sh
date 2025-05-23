@@ -7,6 +7,8 @@ set -e
 export CC_FOR_BUILD=${CC}
 
 ./autogen.sh
+cp "$(dirname "$(which autoconf)")/../share/autoconf/build-aux/config.guess" .
+cp "$(dirname "$(which autoconf)")/../share/autoconf/build-aux/config.sub" .
 
 configure_args=(
   --prefix=${PREFIX}
@@ -14,7 +16,7 @@ configure_args=(
   --disable-debug
   --disable-dependency-tracking
   --enable-cider
-  --with-readline=yes
+  --with-readline=no
   --enable-openmp
 
   # Not enabled for now:
