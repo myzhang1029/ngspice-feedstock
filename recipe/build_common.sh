@@ -22,6 +22,8 @@ configure_args=(
 )
 
 export LDFLAGS="${LDFLAGS} -m64"
+export CXXFLAGS="${CXXFLAGS} -w -std=gnu++11 -Wno-invalid-specialization -Wno-implicit-function-declaration"
+export CFLAGS="${CFLAGS} -w -std=gnu11 -Wno-invalid-specialization -Wno-implicit-function-declaration"
 
 if [[ ! -z "${BUILD_NGSPICE_LIB}" && ! -z "${BUILD_NGSPICE_EXE}" ]]; then
   2>&1 echo "Set either BUILD_NGSPICE_LIB or BUILD_NGSPICE_EXE"
@@ -33,7 +35,7 @@ if [[ ! -z "${BUILD_NGSPICE_LIB}" ]]; then
   # build libngspice.dylib
   #
   mkdir release-lib && cd release-lib
-  ../configure "${configure_args[@]}" --with-ngshared LDFLAGS="${LDFLAGS}"
+  ../configure "${configure_args[@]}" --with-ngshared LDFLAGS="${LDFLAGS}" CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}"
   make -j${CPU_COUNT}
   make install
   cd -
@@ -44,7 +46,7 @@ if [[ ! -z "${BUILD_NGSPICE_EXE}" ]]; then
   # build ngspice executable
   #
   mkdir release-bin && cd release-bin
-  ../configure "${configure_args[@]}" --with-x LDFLAGS="${LDFLAGS}"
+  ../configure "${configure_args[@]}" --with-x LDFLAGS="${LDFLAGS}" CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}"
   make -j${CPU_COUNT}
   make install
   cd -
